@@ -1,0 +1,12 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav class="sidenav" mode="side" opened="true">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list dense>
+      <a mat-list-item href="/customers">Customers</a>
+      <a mat-list-item href="#">Loans</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

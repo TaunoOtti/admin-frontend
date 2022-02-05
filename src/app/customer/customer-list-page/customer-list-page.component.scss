@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+}
+  
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+div {
+  display: flex;
+  position: relative;
+}
+
+.add-button {
+  position: absolute;
+  right: 0;
+}
+
+.mat-form-field{
+  width:35% !important;
+}
