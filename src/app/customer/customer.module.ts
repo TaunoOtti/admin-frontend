@@ -12,7 +12,6 @@ import { MatTableModule } from '@angular/material/table';
 import { CustomerFormComponent } from './components/customer-form/customer-form.component';
 import { CustomerAddPageComponent } from './customer-add-page/customer-add-page.component';
 import { CustomerListPageComponent } from './customer-list-page/customer-list-page.component';
-import { SearchPipe } from './customer-list-page/search.pipe';
 import { CustomerModifyPageComponent } from './customer-modify-page/customer-modify-page.component';
 import { CustomerRoutingModule } from './customer-routing.module';
 
@@ -21,8 +20,7 @@ import { CustomerRoutingModule } from './customer-routing.module';
     CustomerListPageComponent,
     CustomerAddPageComponent,
     CustomerModifyPageComponent,
-    CustomerFormComponent,
-    SearchPipe
+    CustomerFormComponent
   ],
   imports: [
     CommonModule,
