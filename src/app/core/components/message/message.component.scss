@@ -1,0 +1,19 @@
+.message {
+  display: flex;
+  background-color: rgb(247, 200, 195);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  text-align: left;
+  align-items: center;
+}
+
+mat-icon {
+  color: red;
+}
+
+.message span {
+  margin-left: 8px;
+}

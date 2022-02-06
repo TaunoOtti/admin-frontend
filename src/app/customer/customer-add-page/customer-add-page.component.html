@@ -1,1 +1,7 @@
-<p>customer-add-page works!</p>
+<h1>Add Customer</h1>
+<app-customer-form
+[submitButtonText]="'Create'"
+[validationError]="validationError"
+(submitClicked)="createCustomer($event)"
+(backClicked)="navigateToList()"
+></app-customer-form>

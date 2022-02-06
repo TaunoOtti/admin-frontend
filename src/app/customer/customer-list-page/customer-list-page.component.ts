@@ -3,7 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from 'src/app/core/components/confirm-dialog/confirm-dialog.component';
+import { SnackBarNotificationService } from 'src/app/core/services/snack-bar-notification.service';
 import { CustomerService } from '../services/customer.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class CustomerListPageComponent implements OnInit, AfterViewInit {
   constructor(
     private customerService: CustomerService, 
     private dialog: MatDialog,
-    private snackBar: MatSnackBar) {}
+    private snackBarService: SnackBarNotificationService) {}
 
   ngOnInit(): void {
   }
@@ -35,7 +36,7 @@ export class CustomerListPageComponent implements OnInit, AfterViewInit {
         this.dataSource = new MatTableDataSource(result);
         this.dataSource.sort = this.sort;
         this.dataSource.filterPredicate = (data: Element, filter: string) => {
-          const searchDataSource = data['firstName']+data['lastName']+data['email']
+          const searchDataSource = data['customerId']+data['firstName']+data['lastName']+data['email']
           return searchDataSource.trim().toLowerCase().indexOf(filter) != -1;
         }
       }
@@ -56,20 +57,11 @@ export class CustomerListPageComponent implements OnInit, AfterViewInit {
       if (confirmed) {
         this.customerService.deleteCustomer(customerId).subscribe({
           next: () => {
-            this.showSuccessDeleteSnackBar(customerId);
+            this.snackBarService.showMessage('Customer with id: ' + customerId + ' deleted successfully');
             this.loadCustomers();
           }
         })
       }
     })
-  }
-
-  showSuccessDeleteSnackBar(customerId: number) {
-    this.snackBar.open('Customer with id: ' + customerId + ' deleted successfully', 'Close', {
-      duration: 5000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      // panelClass: ['success-snack'] TODO custom success snack
-    });
   }
 }
