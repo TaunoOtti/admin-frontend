@@ -1,0 +1,14 @@
+<h1>Details</h1>
+<table mat-table [dataSource]="customerDetails" class="detail-table">
+  <ng-container matColumnDef="label">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td class="detail-label" mat-cell *matCellDef="let element">{{ element.label }}:</td>
+  </ng-container>
+  <ng-container matColumnDef="value">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td class="detail-value" mat-cell *matCellDef="let element">{{ element.value }}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<h1>Loan data TODO</h1>

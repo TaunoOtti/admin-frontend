@@ -1,0 +1,23 @@
+.detail-table {
+  .mat-cell .mat-header-cell {
+    border: none !important;
+  }
+
+  tr.mat-row {
+    height: 30px;
+  }
+
+  tr.mat-header-row {
+    height: 1px;
+  }
+}
+
+.detail-label {
+  min-width: 150px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.detail-value {
+  padding-left: 5px;
+}

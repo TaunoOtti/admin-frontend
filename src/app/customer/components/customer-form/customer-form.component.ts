@@ -38,16 +38,17 @@ export class CustomerFormComponent implements OnInit {
   @Output() submitClicked = new EventEmitter<CustomerRequestModel>();
   @Output() backClicked = new EventEmitter<void>();
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {
+  }
 
   ngOnInit(): void {
     this.customerForm = this.fb.group({
-      firstName: [null, Validators.required, Validators.maxLength(255)],
-      lastName: [null, Validators.required, Validators.maxLength(255)],
+      firstName: [null, [Validators.required, Validators.maxLength(255)]],
+      lastName: [null, [Validators.required, Validators.maxLength(255)]],
       email: [null, [Validators.required, Validators.email]],
       dateOfBirth: [null, Validators.required],
-      phoneNo: [null, Validators.required, Validators.maxLength(50)],
-      address: [null, Validators.required, Validators.maxLength(255)],
+      phoneNo: [null, [Validators.required, Validators.maxLength(50)]],
+      address: [null, [Validators.required, Validators.maxLength(255)]],
     });
   }
 

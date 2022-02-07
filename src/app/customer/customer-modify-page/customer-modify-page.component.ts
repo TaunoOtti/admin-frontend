@@ -45,13 +45,13 @@ export class CustomerModifyPageComponent implements OnInit {
   modifyCustomer(request: CustomerRequestModel) {
     this.customerService.modifyCustomer(request, this.customer.customerId).subscribe({
       next: (response: CustomerModel) => {
-        this.snackBarNotificationService.showMessage('Customer data saved');
+        this.snackBarNotificationService.showMessage("Customer data saved");
         this.navigateToList();
       },
       error: (error) => {
         this.handleError(error);
-      }
-    })
+      },
+    });
   }
 
   handleError(backendError: BackendError) {

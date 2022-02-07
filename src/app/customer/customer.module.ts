@@ -7,13 +7,15 @@ import { CustomerAddPageComponent } from './customer-add-page/customer-add-page.
 import { CustomerListPageComponent } from './customer-list-page/customer-list-page.component';
 import { CustomerModifyPageComponent } from './customer-modify-page/customer-modify-page.component';
 import { CustomerRoutingModule } from './customer-routing.module';
+import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
 
 @NgModule({
   declarations: [
     CustomerListPageComponent,
     CustomerAddPageComponent,
     CustomerModifyPageComponent,
-    CustomerFormComponent
+    CustomerFormComponent,
+    CustomerDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,8 @@
 <h1>Modify Customer</h1>
 <app-customer-form
-[submitButtonText]="'Save'"
-[validationError]="validationError"
-(submitClicked)="modifyCustomer($event)"
-(backClicked)="navigateToList()"
+  [submitButtonText]="'Save'"
+  [validationError]="validationError"
+  [customer]="customer"
+  (submitClicked)="modifyCustomer($event)"
+  (backClicked)="navigateToList()"
 ></app-customer-form>

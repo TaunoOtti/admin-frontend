@@ -1,0 +1,35 @@
+<h1>Add Loan</h1>
+<app-message [messages]="errorMessages"></app-message>
+<div class="form-container">
+  <form [formGroup]="loanForm" (submit)="submitClicked()">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Loan application name</mat-label>
+      <input matInput formControlName="loanApplicationName" required />
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Start date</mat-label>
+        <input matInput formControlName="startDate" [matDatepicker]="picker" (click)="picker.open()" [min]="minDate" required />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Loan period in months</mat-label>
+      <input matInput formControlName="loanPeriodInMonths" required/>
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput formControlName="amount" required />
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Customer id</mat-label>
+      <input matInput formControlName="customerId" required />
+    </mat-form-field>
+
+    <button mat-button type="button" (click)="backClicked()">Back</button>
+    <button mat-flat-button color="primary" type="submit">Create</button>
+  </form>
+</div>

@@ -4,7 +4,7 @@ export interface CustomerModel {
   lastName: string;
   email: string;
   dateOfBirth: string;
-  phone: string;
+  phoneNo: string;
   address: string;
   createdDtime: string;
   modifiedDtime: string;
