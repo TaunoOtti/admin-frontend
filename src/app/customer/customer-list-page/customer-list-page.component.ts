@@ -4,6 +4,8 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { ConfirmDialogComponent } from "src/app/core/components/confirm-dialog/confirm-dialog.component";
+import { BackendError } from "src/app/core/models/backend-error.model";
+import { SnackBarMessageType } from "src/app/core/models/snack-bar-message-type.enum";
 import { SnackBarNotificationService } from "src/app/core/services/snack-bar-notification.service";
 import { CustomerDetailsComponent } from "../components/customer-details/customer-details.component";
 import { Details } from "../models/customer-detail.model";
@@ -35,7 +37,7 @@ export class CustomerListPageComponent implements OnInit, AfterViewInit {
   constructor(
     private customerService: CustomerService,
     private dialog: MatDialog,
-    private snackBarService: SnackBarNotificationService
+    private snackBarNotificationService: SnackBarNotificationService
   ) {}
 
   ngOnInit(): void {}
@@ -74,8 +76,11 @@ export class CustomerListPageComponent implements OnInit, AfterViewInit {
         if (confirmed) {
           this.customerService.deleteCustomer(customerId).subscribe({
             next: () => {
-              this.snackBarService.showMessage("Customer with id: " + customerId + " deleted successfully");
+              this.snackBarNotificationService.showMessage("Customer with id: " + customerId + " deleted successfully");
               this.loadCustomers();
+            }, 
+            error: (error: BackendError) => {
+              this.snackBarNotificationService.showMessage(error.message, SnackBarMessageType.ERROR);
             },
           });
         }

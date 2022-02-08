@@ -1,4 +1,9 @@
 import { AfterViewInit, Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { ConfirmDialogComponent } from "src/app/core/components/confirm-dialog/confirm-dialog.component";
+import { BackendError } from "src/app/core/models/backend-error.model";
+import { SnackBarMessageType } from "src/app/core/models/snack-bar-message-type.enum";
+import { SnackBarNotificationService } from "src/app/core/services/snack-bar-notification.service";
 import { LoanService } from "../services/loan.service";
 
 @Component({
@@ -16,11 +21,16 @@ export class LoanListPageComponent implements OnInit, AfterViewInit {
     "customerId",
     "createdDtime",
     "modifiedDtime",
+    "actions",
   ];
 
   dataSource: any;
 
-  constructor(private loanService: LoanService) {}
+  constructor(
+    private loanService: LoanService,
+    private dialog: MatDialog,
+    private snackBarNotificationService: SnackBarNotificationService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -34,5 +44,28 @@ export class LoanListPageComponent implements OnInit, AfterViewInit {
         this.dataSource = result;
       },
     });
+  }
+
+  deleteLoan(loanId: number, customerId: number) {
+    this.dialog
+      .open(ConfirmDialogComponent, {
+        data: {
+          message: "Delete loan with id:" + loanId + "?",
+        },
+      })
+      .afterClosed()
+      .subscribe((confirmed: boolean) => {
+        if (confirmed) {
+          this.loanService.deleteLoan(customerId, loanId).subscribe({
+            next: () => {
+              this.snackBarNotificationService.showMessage("Loan with id: " + loanId + " deleted successfully");
+              this.loadLoans();
+            },
+            error: (error: BackendError) => {
+              this.snackBarNotificationService.showMessage(error.message, SnackBarMessageType.ERROR);
+            },
+          });
+        }
+      });
   }
 }

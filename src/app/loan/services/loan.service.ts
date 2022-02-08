@@ -8,7 +8,6 @@ import { Loan } from "../models/loan.model";
   providedIn: "root",
 })
 export class LoanService {
-
   constructor(private apiService: ApiService) {}
 
   getLoans(): Observable<Loan[]> {
@@ -21,5 +20,9 @@ export class LoanService {
 
   createLoan(request: LoanRequest, customerId: number): Observable<Loan> {
     return this.apiService.post<Loan>("/customers/" + customerId + "/loans", request);
+  }
+
+  deleteLoan(customerId: number, loanId: number): Observable<void> {
+    return this.apiService.delete<void>("/customers/" + customerId + "/loans/" + loanId);
   }
 }
