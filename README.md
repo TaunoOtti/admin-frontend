@@ -1,6 +1,6 @@
 # Admin Frontend
 
-Provides user interface for https://github.com/TaunoOtti/demo-app;
+Provides user interface for https://github.com/TaunoOtti/admin-api;
 
 
 Project is created with Angular version 13.2.0 and build with Angular Material components https://material.angular.io/ 
